@@ -25,6 +25,17 @@ function FileDiff(org, repo, number, element) {
 		if (!isOpen) this.close()
 	}
 
+	var div = document.createElement("div")
+	div.style.width = "100%"
+	div.style.height = "3px"
+	div.style.backgroundColor = "red"
+	div.style.cursor = "pointer"
+	div.onclick = function() {
+		self.close()
+		location.href="#" + self.id
+	}
+	element.append(div)
+
 	var observer = new MutationObserver(function (event) {
 	  console.log("changed")   
 	  localStorage.setItem(self.localStorageKey(), self.isOpen())
