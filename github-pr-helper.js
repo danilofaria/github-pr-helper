@@ -9,7 +9,7 @@ function FileDiff(org, repo, number, element) {
 		return document.querySelector("#" + this.id)
 	}
 	this.isOpen = function() {
-		return this.selectElement().classList.contains("open")
+		return this.selectElement().classList.contains("Details--on")
 	}
 	this.open = function(){
 		this.selectElement().classList.add("open", "Details--on")
@@ -37,7 +37,7 @@ function FileDiff(org, repo, number, element) {
 	element.append(div)
 
 	var observer = new MutationObserver(function (event) {
-	  console.log("changed")   
+	  console.log("changed: isOpen " + self.isOpen())   
 	  localStorage.setItem(self.localStorageKey(), self.isOpen())
 	})
 	observer.observe(element, {
