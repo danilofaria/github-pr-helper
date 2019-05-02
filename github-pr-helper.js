@@ -26,10 +26,7 @@ function FileDiff(org, repo, number, element) {
 	}
 
 	var div = document.createElement("div")
-	div.style.width = "100%"
-	div.style.height = "3px"
-	div.style.backgroundColor = "red"
-	div.style.cursor = "pointer"
+	div.classList.add('collapse-bar')
 	div.onclick = function() {
 		self.close()
 		location.href="#" + self.id
@@ -59,10 +56,14 @@ window.open = function() {
 }
 loadState()
 
+var style = document.createElement('style')
+var css = ".collapse-bar{ background-color: rgb(255, 147, 160); width: 100%; height: 5px; cursor: pointer; } .collapse-bar:hover{ background-color: red }"
+style.appendChild(document.createTextNode(css))
+document.getElementsByTagName('head')[0].appendChild(style)
+
 var button = document.createElement("button")
 button.innerText = "Reset"
 button.onclick = open
-button.classList.add("btn")
-button.classList.add("btn-sm")
+button.classList.add("btn", "btn-sm")
 button.style.marginLeft = "20px"
 document.querySelector('#files_bucket > div.pr-toolbar.js-sticky.js-sticky-offset-scroll > div > div.float-right.pr-review-tools').append(button)
