@@ -58,3 +58,11 @@ window.open = function() {
 	fileDiffs.forEach(function(diff) {diff.open()})
 }
 loadState()
+
+var button = document.createElement("button")
+button.innerText = "Reset"
+button.onclick = open
+button.classList.add("btn")
+button.classList.add("btn-sm")
+button.style.marginLeft = "20px"
+document.querySelector('#files_bucket > div.pr-toolbar.js-sticky.js-sticky-offset-scroll > div > div.float-right.pr-review-tools').append(button)
