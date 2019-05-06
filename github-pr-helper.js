@@ -21,15 +21,11 @@ function initCommandButtonTracking() {
 function keydown(e) {
    if (!e) e= event;
    if (e.keyCode == 91 || e.keyCode == 93) commandDown = true;
-   e.preventDefault();
-   e.stopPropagation();
 }
 
 function keyup(e) {
    if (!e) e= event;
    if (e.keyCode == 91 || e.keyCode == 93) commandDown = false;
-   e.preventDefault();
-   e.stopPropagation();
 }
 initCommandButtonTracking()
 
