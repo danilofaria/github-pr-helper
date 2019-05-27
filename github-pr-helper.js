@@ -1,34 +1,3 @@
-// https://stackoverflow.com/questions/3902635/how-does-one-capture-a-macs-command-key-via-javascript
-// this command button tracking should only work on chrome
-var commandDown = false
-function initCommandButtonTracking() {
-    if (document.addEventListener)
-    {
-       document.addEventListener("keydown",keydown,false);
-       document.addEventListener("keyup",keyup,false);
-    }
-    else if (document.attachEvent)
-    {
-       document.attachEvent("onkeydown", keydown);
-       document.attachEvent("onkeyup", keyup);
-    }
-    else
-    {
-       document.onkeydown= keydown;
-       document.onkeyup= keyup;
-    }
-}
-function keydown(e) {
-   if (!e) e= event;
-   if (e.keyCode == 91 || e.keyCode == 93) commandDown = true;
-}
-
-function keyup(e) {
-   if (!e) e= event;
-   if (e.keyCode == 91 || e.keyCode == 93) commandDown = false;
-}
-initCommandButtonTracking()
-
 function FileDiff(org, repo, number, element) {
 	var self = this
 	this.org = org
@@ -64,11 +33,6 @@ function FileDiff(org, repo, number, element) {
 	}
 	div.onclick = closeAndFocus
 	element.append(div)
-
-	element.onclick = function() {
-		if (commandDown)
-			closeAndFocus()
-	}
 
 	var observer = new MutationObserver(function (event) {
 	  console.log("changed: isOpen " + self.isOpen())   
