@@ -18,7 +18,7 @@ function FileDiff(org, repo, number, element) {
 		this.selectElement().classList.remove("open", "Details--on")
 	}
 	this.localStorageKey = function() {
-		return "pipi:" + this.org + ":" + this.repo + ":" + this.number + ":" + this.id
+		return "prHelper:" + this.org + ":" + this.repo + ":" + this.number + ":" + this.id
 	}
 	this.loadState = function() {
 		var isOpen = (localStorage.getItem(this.localStorageKey()) || "true") == "true"
@@ -62,9 +62,9 @@ var css = ".collapse-bar{ background-color: rgb(255, 147, 160); width: 100%; hei
 style.appendChild(document.createTextNode(css))
 document.getElementsByTagName('head')[0].appendChild(style)
 
-var button = document.createElement("button")
-button.innerText = "Reset"
-button.onclick = open
-button.classList.add("btn", "btn-sm")
-button.style.marginLeft = "20px"
-document.querySelector('#files_bucket > div.pr-toolbar.js-sticky.js-sticky-offset-scroll > div > div.float-right.pr-review-tools').append(button)
+var resetButton = document.createElement("button")
+resetButton.innerText = "Reset"
+resetButton.onclick = open
+resetButton.classList.add("btn", "btn-sm")
+resetButton.style.marginLeft = "20px"
+document.querySelector('#files_bucket > div.pr-toolbar.js-sticky.js-sticky-offset-scroll > div > div.float-right.pr-review-tools').append(resetButton)
