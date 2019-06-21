@@ -52,8 +52,14 @@ window.fileDiffs = Array.from(document.getElementsByClassName("file")).map(funct
 window.loadState = function() {
 	fileDiffs.forEach(function(diff) {diff.loadState()})
 }
-window.open = function() {
+window.openAll = function() {
 	fileDiffs.forEach(function(diff) {diff.open()})
+}
+window.removeMarkers = function() {
+	// remove all +/- markers from the code for better readability
+	Array.from(document.getElementsByClassName("blob-code-marker")).forEach(function(el) {
+		el.removeAttribute("data-code-marker")
+	})
 }
 loadState()
 
@@ -62,9 +68,14 @@ var css = ".collapse-bar{ background-color: rgb(255, 147, 160); width: 100%; hei
 style.appendChild(document.createTextNode(css))
 document.getElementsByTagName('head')[0].appendChild(style)
 
-var resetButton = document.createElement("button")
-resetButton.innerText = "Reset"
-resetButton.onclick = open
-resetButton.classList.add("btn", "btn-sm")
-resetButton.style.marginLeft = "20px"
-document.querySelector('#files_bucket > div.pr-toolbar.js-sticky.js-sticky-offset-scroll > div > div.float-right.pr-review-tools').append(resetButton)
+window.button = function(name, action) {
+	var newButton = document.createElement("button")
+	newButton.innerText = name
+	newButton.onclick = action
+	newButton.classList.add("btn", "btn-sm")
+	newButton.style.marginLeft = "20px"
+	document.querySelector('#files_bucket > div.pr-toolbar.js-sticky.js-sticky-offset-scroll > div > div.float-right.pr-review-tools').append(newButton)
+}
+
+button("Reset", openAll)
+button("Remove Markers", removeMarkers)
